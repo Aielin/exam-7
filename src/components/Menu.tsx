@@ -15,7 +15,6 @@ const Menu: React.FC<MenuProps> = ({ onAddItem }) => {
         {name: 'Cola', price: 40},
     ];
 
-
     return (
         <div className="d-flex flex-wrap">
             {items.map((item) => (

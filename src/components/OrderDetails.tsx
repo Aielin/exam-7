@@ -1,46 +1,38 @@
 import React from "react";
+import OrderList from "./OrderList";
 
 type OrderDetailsProps = {
-    order:{name:string; price:number; quantity:number}[];
-    onRemoveItem:(name: string) => void;
-    onDecreaseItem:(name: string) => void;
-    onIncreaseItem:(name: string) => void;
+    order: { name: string; price: number; quantity: number }[];
+    onRemoveItem: (name: string) => void;
+    onDecreaseItem: (name: string) => void;
+    onIncreaseItem: (name: string) => void;
+    onClearOrder: () => void;
 };
 
-const OrderDetails: React.FC<OrderDetailsProps> = ({order, onRemoveItem, onDecreaseItem, onIncreaseItem}) => {
+const OrderDetails: React.FC<OrderDetailsProps> = ({ order, onRemoveItem, onDecreaseItem, onIncreaseItem, onClearOrder }) => {
+
     const totalPrice = order.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-    return(
-        <div className="border p-3">
+    return (
+        <div className="border p-3 bg-light">
             <h4>Order Details:</h4>
-            {order.length === 0? (
+            {order.length === 0 ? (
                 <p>Order is empty! Please add some items.</p>
-            ):(
+            ) : (
                 <div>
-                    <ul className="list-unstyled">
-                        {order.map((item, index) => (
-                            <li key={index}>
-                                {item.name} x {item.quantity} - {item.price * item.quantity} KGS
-                                <button className="btn btn-outline-secondary btn-sm me-2"
-                                        onClick={() => onDecreaseItem(item.name)}>
-                                    -
-                                </button>
-                                <span className="me-2">{item.quantity}</span>
-                                <button className="btn btn-outline-secondary btn-sm me-2"
-                                        onClick={() => onIncreaseItem(item.name)}>
-                                    +
-                                </button>
-                                <button className="btn btn-outline-danger btn-sm"
-                                        onClick={() => onRemoveItem(item.name)}>
-                                    &times;
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    <hr/>
+                    <OrderList
+                        order={order}
+                        onRemoveItem={onRemoveItem}
+                        onDecreaseItem={onDecreaseItem}
+                        onIncreaseItem={onIncreaseItem}
+                    />
+                    <hr />
                     <p>
                         <strong>Total price:</strong> {totalPrice} KGS
                     </p>
+                    <button className="btn btn-warning mt-2" onClick={onClearOrder}>
+                        Clear Order
+                    </button>
                 </div>
             )}
         </div>

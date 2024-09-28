@@ -1,9 +1,10 @@
 import React from "react";
+import './Header.css'
 
 const Header: React.FC = () => {
     return (
-        <header className='bg-light p-3 text-center'>
-            <h1>Food court</h1>
+        <header className=' p-3 text-center header-img'>
+            <h1 className='fw-bold'>Food court</h1>
         </header>
     );
 };

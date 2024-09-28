@@ -39,17 +39,22 @@ const App: React.FC = () => {
         setOrder((prevOrder) => prevOrder.filter((item) => item.name !== name));
     };
 
+    const handleClearOrder = () => {
+        setOrder([]);
+    };
+
     return (
         <div className="App">
             <Header />
             <div className="container mt-3">
-                <div className="row">
-                    <div className="col-md-4">
+                <div className="row align-items-start">
+                    <div className="col-md-4 d-flex align-self-start mt-2">
                         <OrderDetails
                             order={order}
                             onRemoveItem={handleRemoveItem}
                             onDecreaseItem={handleDecreaseItem}
                             onIncreaseItem={handleIncreaseItem}
+                            onClearOrder={handleClearOrder}
                         />
                     </div>
                     <div className="col-md-8">
