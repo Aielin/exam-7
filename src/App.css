@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+body{
+  background-image: url('https://img.freepik.com/premium-photo/teak-wood-material-wall-texture-vintage-wallpaper_84485-883.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
